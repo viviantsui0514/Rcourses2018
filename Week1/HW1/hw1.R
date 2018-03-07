@@ -91,7 +91,7 @@ while(num1 == num2 || num1 == num3 || num1 == num4){
   num1 <- sample(1:9,size=1)
 }
 answer <- as.integer(1000*num1+100*num2+10*num3+num4)
-answer
+
 #第二三部分
 guess <- as.integer(readline(prompt="Enter four number: "))
 if (guess == answer ){
