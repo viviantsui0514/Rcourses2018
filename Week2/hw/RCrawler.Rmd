@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r RCrawler}
 library(httr)
-url <- "https://ecshweb.pchome.com.tw/search/v3.3/?q=%E6%97%A5%E6%96%87%E8%BE%AD%E5%85%B8&scope=all"
+url <- "http://ecshweb.pchome.com.tw/search/v3.3/all/results?q=sony&page=1&sort=rnk/dc"
 res = GET(url)
 res_json = content(res)
 raw = (data.frame(do.call(rbind,res_json$prods)))
