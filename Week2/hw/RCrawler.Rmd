@@ -1,0 +1,29 @@
+---
+title: "RCrawler"
+author: "Viviantsui0514"
+date: "2018/3/8"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## RCrawler
+
+
+```{r RCrawler}
+library(httr)
+url <- "https://ecshweb.pchome.com.tw/search/v3.3/?q=%E6%97%A5%E6%96%87%E8%BE%AD%E5%85%B8&scope=all"
+res = GET(url)
+res_json = content(res)
+raw = (data.frame(do.call(rbind,res_json$prods)))
+```
+
+## My Results
+
+```{r Table}
+library(knitr)
+kable(raw)
+```
+
