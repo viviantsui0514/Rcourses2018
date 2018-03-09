@@ -22,9 +22,9 @@
 
 ### Week2
 * Before class
-  1.Learn function and pipe
-  2.Figure out how Markdown work
-  3.Read week2 ppt
+  1. Learn function and pipe
+  2. Figure out how Markdown work
+  3. Read week2 ppt
   
 * In class(3/8)
   1. Sign up a Discord account
@@ -35,6 +35,8 @@
   6. Find out the packages will change, so the most important thing we need to learn is the logic
 
 * After class
+  1. Update my github introduction
+  
 
 ### Week3
 * Before class
