@@ -1,11 +1,37 @@
-# Rcourses2018 (NTU106-2資料科學程式設計)
-### Hello我是崔芷瑄
-### 想在這邊紀錄學習R的過程
-# Week1
-### 課堂: practice1.2.3(3/1)
-### 作業(無卡關): task1.2.3(3/1)
-### 作業(花時間解決): task4(3/2).5(3/6)
-# Week2
-### 課前完成: practice1.2.3(3/7)
-### 課堂: 爬蟲研究--套件會變,學習如何觀察和查找(3/8)
-### 課堂: 完成爬蟲,上傳.r,.rmd,.html
+# Rcourse_2018_Spring_CS-X 
+> **NTU106-2資料科學程式設計**
+> **Data Analysis**
+
+## About me
+* 崔芷瑄 (TSUI CHIH-HSUAN)
+* National Taiwan University student
+* Major in Economics
+
+## Record
+---
+### Week1
+* In class (3/1)
+  . Sign up a Github account
+  . Install Git windows
+  . Figure out how Git and Github work
+  . Finish class pratice
+  . Do some task in hw_1
+* After class
+  . Finish hw_1
+  . Review some basic knowledge of R
+
+### Week2
+* Before class
+  .Learn function and pipe
+  .Figure out how Markdown work
+  .Read week2 ppt
+  
+* In class(3/8)
+  . Sign up a Discord account
+  . Join class Discord and communicate with other student
+  . Finish class pratice
+  . Finish hw2(.rmd,.r,.html)
+  . Learn about web crawling
+  . Find out the packages will change, so the most important thing we need to learn is the logic
+  
+
