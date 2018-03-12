@@ -32,10 +32,12 @@
   3. Finish class pratice
   4. Finish hw2(.rmd,.r,.html)
   5. Learn about web crawling
-  6. Find out the packages will change, so the most important thing we need to learn is the logic
+  6. Find out that packages will change. So, the most important thing we need to learn is the logic
 
 * After class
   1. Update my github introduction
+  2. Try some web crawling and update my work
+  3. 
   
 
 ### Week3
