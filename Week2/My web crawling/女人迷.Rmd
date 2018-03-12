@@ -1,0 +1,37 @@
+---
+title: "女人迷"
+author: "Viviantsui0514"
+date: "2018年3月13日"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Web Crawling
+
+```{r}
+library(rvest)
+
+title=read_html("https://womany.net/interests/empowerment?ref=s-nav")   
+title=html_nodes(title,"h2")   
+title=html_text(title)  
+title=iconv(title,"UTF-8")  
+
+
+url=read_html("https://womany.net/interests/empowerment?ref=s-nav") 
+url=html_nodes(url,"a.article-block")  
+url=html_attr(url,"href")  
+
+
+```
+
+
+##My result
+
+```{r Table}
+title
+url
+```
+
+
