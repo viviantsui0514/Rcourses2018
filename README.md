@@ -36,7 +36,7 @@
 
 * After class
   1. Update my github introduction
-  2. Install SelectorGadget and Xpath Helper
+  2. Install SelectorGadget and Xpath Helper
   3. Learn basic knowledge of HTML and XML
   4. Try some web crawling and update my work
    
