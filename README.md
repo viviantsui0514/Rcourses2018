@@ -36,8 +36,10 @@
 
 * After class
   1. Update my github introduction
-  2. Try some web crawling and update my work
-  3. 
+  2. Install SelectorGadget and Xpath Helper
+  3. Learn basic knowledge of HTML and XML
+  4. Try some web crawling and update my work
+   
   
 
 ### Week3
