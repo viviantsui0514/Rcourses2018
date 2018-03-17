@@ -10,7 +10,7 @@
 ## "The process of learning and developing is more important than the outcome."
 ---
 ### Week1
-* In class (3/1)
+* In class 
   1. Sign up a Github account
   2. Install Git windows
   3. Figure out how Git and Github work
@@ -40,10 +40,13 @@
   3. Learn basic knowledge of HTML and XML
   4. Try some web crawling and update my work
    
-  
-
 ### Week3
 * Before class
+  1. Prview week3 ppt
 * In class
+  1. Learn about data visualization
+  2. Try pair programming(driver) and figure out ggplot2 
 * After class
-
+  1. Update ggplot2 to 2.2.1
+  2. Update R to 4.3.3
+  3. Finish hw3(iris ggplot2)
