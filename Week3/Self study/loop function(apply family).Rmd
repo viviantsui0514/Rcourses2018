@@ -1,0 +1,76 @@
+---
+title: "Loop function (apply family)"
+author: "Viviantsui0514"
+date: "2018年3月17日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+> Note of R Programming by Johns Hopkins University
+
+## lapply
+> Loop over a list and evaluate a function on each element
+
+```{r}
+x <- list(a=1:5, b = rnorm(10), c=rnorm(20,1),d=rnorm(100,5))
+lapply(x,mean)
+y <- 1:4
+lapply(y,runif,min=0, max=33)
+```
+> lapply always return list
+
+## sapply
+> Simplify the result of lappy(vector,matrix,list)
+
+```{r}
+sapply(x,mean)
+#mean doesn't apply to lists
+mean(x)
+```
+
+## apply
+> evaluate a function over the margins of an array
+
+```{r}
+# matrix has 20 rows and 10 columns
+x <- matrix(rnorm(200),20,10)
+# mean of columns 
+apply(x,2,mean)
+# sum of rows
+apply(x,1,sum)
+# rowSums = apply(x, 1, sum)
+# rowMeans = apply(x, 1, mean)
+# colSums = apply(x, 2, sum)
+# colMeans = apply(x, 2, mean)
+```
+
+> apply(x, margin, function...)
+
+## mapply
+```{r}
+mapply(rep, 1:4, 4:1)
+```
+
+## tapply
+> apply a function over subsets of a vector
+
+```{r}
+x <- c(rnorm(10), runif(10), rnorm(10,1))
+f <- gl(3,10)
+f
+tapply(x, f, mean)
+tapply(x, f, range)
+```
+
+## split
+
+```{r}
+x <- c(rnorm(10), runif(10), rnorm(10,1))
+f <- gl(3,10)
+split(x,f)
+lapply(split(x,f), mean)
+```
+
+
