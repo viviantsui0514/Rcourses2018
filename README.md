@@ -42,7 +42,7 @@
    
 ### Week3
 * Before class
-  1. Prview week3 ppt
+  1. Preview week3 ppt
 * In class
   1. Learn about data visualization
   2. Try pair programming(driver: me, navigator: 韓曙憶) and figure out ggplot2 
