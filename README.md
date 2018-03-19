@@ -45,7 +45,7 @@
   1. Preview week3 ppt
 * In class
   1. Learn about data visualization
-  2. Try pair programming(driver: me, navigator: 韓曙憶) and figure out ggplot2 
+  2. Try pair programming(driver: me, navigator: 韓曙憶) and figure out ggplot2 
 * After class
   1. Update ggplot2 to 2.2.1 
   2. Update R to 4.3.3
