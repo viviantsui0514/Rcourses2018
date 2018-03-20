@@ -13,7 +13,7 @@
 * In class 
   1. Sign up a Github account
   2. Install Git windows
-  3. Figure out how Git and Github work
+  3. Figure out how **Git** and **Github** work
   4. Finish class pratice
   5. Do some task in hw_1
 * After class
@@ -23,7 +23,7 @@
 ### Week2
 * Before class
   1. Learn function and pipe
-  2. Figure out how Markdown work
+  2. Figure out how **Markdown** work
   3. Read week2 ppt
   
 * In class(3/8)
