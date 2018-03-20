@@ -51,6 +51,6 @@
   2. Update R to 4.3.3
   3. Finish hw3(iris ggplot2)
   4. Learn about **apply family** on [coursera](https://www.coursera.org/learn/r-programming/home/welcome) and take note with rmarkdown
-  5. Upload my note of **basic data visualization** and **Lattice** learn from [RPubs]{https://rpubs.com/skydome20/R-Note4-Plotting_System}
+  5. Upload my note of **basic data visualization** and **Lattice** learn from [RPubs](https://rpubs.com/skydome20/R-Note4-Plotting_System)
   
   
