@@ -1,0 +1,64 @@
+---
+title: "Lattice"
+author: "Viviantsui0514"
+date: "2018年3月20日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+>Source from https://rpubs.com/skydome20/R-Note4-Plotting_System
+
+#Lattice
+>function(formula = y~x | f*g, data = data)
+```{r}
+require(lattice)
+require(datasets)
+head(airquality)
+```
+
+## ‧histogram()
+>直方圖(Histogram)
+```{r}
+airquality$Month <- as.factor(airquality$Month)
+histogram(x= ~ Ozone | Month,  
+          data=airquality,     
+          xlab="Ozone(ppb)",  
+          layout=c(5,1))       # 5*1
+```
+
+## .bwplot()
+>盒鬚圖(Box Plot)
+```{r}
+bwplot(x = Ozone ~ Month,      
+       data = airquality,     
+       xlab = "Month"         
+       )
+```
+
+## ‧densityplot()
+>機率密度圖
+```{r}
+densityplot( ~ Ozone ,      
+            data=airquality)
+```
+ 
+## ‧cloud()
+>3D圖
+```{r}
+cloud(x=Wind~Temp+Ozone | Month, 
+       data=airquality  )
+```
+
+## ‧xyplot()
+>散布圖(Scatter Plot)
+```{r}
+xyplot(x=Wind~Temp,         
+       data=airquality,    
+       auto.key=list(space="top", columns=5,           
+       title="Month Labels", 
+       cex.title=1)          
+       )
+```
