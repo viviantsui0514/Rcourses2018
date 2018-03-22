@@ -63,4 +63,4 @@
   2. Pair programming with *鄭富鴻* (Topic: **fb API** + **word cloud**)
   3. Try to finish week hw
 * After class
-  1. Submit week hw (kikuChen fb)
+  1. Submit week hw (kikuChen fb)
