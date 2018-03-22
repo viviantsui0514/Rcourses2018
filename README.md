@@ -59,4 +59,6 @@
   1. Preview week4 ppt
   2. Edit README
 * In class
+  1. Install JsonViewer
+  2. 
 * After class
