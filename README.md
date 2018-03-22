@@ -54,3 +54,9 @@
   5. Upload my note of **basic data visualization** and **Lattice** learn from [RPubs](https://rpubs.com/skydome20/R-Note4-Plotting_System)
   6. Use **ggmap** to show Japan map(ggmapjpn)
   
+### Week4
+* Before class
+  1. Preview week4 ppt
+  2. Edit README
+* In class
+* After class
