@@ -64,3 +64,4 @@
   3. Try to finish week hw
 * After class
   1. Submit week hw (kikuChen fb)
+  2. Use [geojson](http://geojson.io/#map=2/20.0/0.0) to show NTU main campus
