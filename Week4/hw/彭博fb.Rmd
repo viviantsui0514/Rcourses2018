@@ -1,0 +1,321 @@
+---
+title: "bloomberg fb"
+author: "Viviantsui0514"
+date: "2018年3月29日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#**彭博商業週刊fb粉專分析**
+>彭博商業週刊會在fb粉專收錄文章節選,透過製作文字雲,希望能夠幫助我快速了解趨勢
+
+##(一)較長期趨勢
+>透過爬100筆貼文,希望能了解較長期的趨勢
+
+###利用facebook for developer
+```{r}
+library(Rfacebook)
+token <- "EAACEdEose0cBANR5lAHZB5QtzZBu2prxvmj90oUQCubP1A44eFPkMiKt8um1Ekt3Wgy92Tw20kZCBCb0WW4v0S8f2chMbOd30E7bxlOKOu3xngbkvQ8PLLgnSPJZAsNLtNV0Aq8yr5WGThmVFqelKpPAyKQXzSVsN70xGtynBwAC9weG2iZCiZBKKvdepqnMc5t7sdwLlFwQZDZD"
+me <- getUsers("me", token, private_info = TRUE)
+me$name
+page.id <- "214578858689103" 
+page <- getPage(page.id, token=token, n = 100)
+str(page)
+View(page)
+```
+
+###文字清理
+>根據自己的閱讀習慣,把不重要的部分清除(p.s.有好多不重要的字...)
+```{r}
+library(NLP)
+library(tm)
+library(jiebaRD)
+library(jiebaR)
+library(slam)
+library(RColorBrewer)
+library(wordcloud)
+
+docs <- Corpus(VectorSource(page$message))
+toSpace <- content_transformer(function(x, pattern) {
+  return (gsub(pattern, " ", x))}
+)
+docs <- tm_map(docs, toSpace, "的")
+docs <- tm_map(docs, toSpace, "在")
+docs <- tm_map(docs, toSpace, "是")
+docs <- tm_map(docs, toSpace, "會")
+docs <- tm_map(docs, toSpace, "將")
+docs <- tm_map(docs, toSpace, "了")
+docs <- tm_map(docs, toSpace, "上")
+docs <- tm_map(docs, toSpace, "而")
+docs <- tm_map(docs, toSpace, "更")
+docs <- tm_map(docs, toSpace, "並")
+docs <- tm_map(docs, toSpace, "從")
+docs <- tm_map(docs, toSpace, "這")
+docs <- tm_map(docs, toSpace, "稱")
+docs <- tm_map(docs, toSpace, "對")
+docs <- tm_map(docs, toSpace, "但是")
+docs <- tm_map(docs, toSpace, "我們")
+docs <- tm_map(docs, toSpace, "到")
+docs <- tm_map(docs, toSpace, "也")
+docs <- tm_map(docs, toSpace, "與")
+docs <- tm_map(docs, toSpace, "就")
+docs <- tm_map(docs, toSpace, "和")
+docs <- tm_map(docs, toSpace, "為")
+docs <- tm_map(docs, toSpace, "他")
+docs <- tm_map(docs, toSpace, "可以")
+docs <- tm_map(docs, toSpace, "日")
+docs <- tm_map(docs, toSpace, "月")
+docs <- tm_map(docs, toSpace, "該")
+docs <- tm_map(docs, toSpace, "被")
+docs <- tm_map(docs, toSpace, "一個")
+docs <- tm_map(docs, toSpace, "不")
+docs <- tm_map(docs, toSpace, "正")
+docs <- tm_map(docs, toSpace, "有")
+docs <- tm_map(docs, toSpace, "以")
+docs <- tm_map(docs, toSpace, "來")
+docs <- tm_map(docs, toSpace, "個")
+docs <- tm_map(docs, toSpace, "人")
+docs <- tm_map(docs, toSpace, "其")
+docs <- tm_map(docs, toSpace, "但")
+docs <- tm_map(docs, toSpace, "等")
+docs <- tm_map(docs, toSpace, "還")
+docs <- tm_map(docs, toSpace, "說")
+docs <- tm_map(docs, toSpace, "已經")
+docs <- tm_map(docs, toSpace, "沒")
+docs <- tm_map(docs, toSpace, "都")
+docs <- tm_map(docs, toSpace, "成")
+docs <- tm_map(docs, toSpace, "後")
+docs <- tm_map(docs, toSpace, "因")
+docs <- tm_map(docs, toSpace, "所")
+docs <- tm_map(docs, toSpace, "於")
+docs <- tm_map(docs, toSpace, "中")
+docs <- tm_map(docs, toSpace, "年")
+docs <- tm_map(docs, toSpace, "表示")
+docs <- tm_map(docs, toSpace, "多")
+docs <- tm_map(docs, toSpace, "及")
+docs <- tm_map(docs, toSpace, "至")
+docs <- tm_map(docs, toSpace, "由")
+docs <- tm_map(docs, toSpace, "們")
+docs <- tm_map(docs, toSpace, "向")
+docs <- tm_map(docs, toSpace, "家")
+docs <- tm_map(docs, toSpace, "前")
+docs <- tm_map(docs, toSpace, "本")
+docs <- tm_map(docs, toSpace, "些")
+docs <- tm_map(docs, toSpace, "時")
+docs <- tm_map(docs, toSpace, "一")
+docs <- tm_map(docs, toSpace, "之")
+docs <- tm_map(docs, toSpace, "目")
+docs <- tm_map(docs, toSpace, "即")
+docs <- tm_map(docs, toSpace, "此")
+docs <- tm_map(docs, toSpace, "當")
+docs <- tm_map(docs, toSpace, "達")
+docs <- tm_map(docs, toSpace, "它")
+docs <- tm_map(docs, toSpace, "兩")
+docs <- tm_map(docs, toSpace, "大")
+docs <- tm_map(docs, toSpace, "下")
+docs <- tm_map(docs, toSpace, "位")
+docs <- tm_map(docs, toSpace, "新")
+docs <- tm_map(docs, toSpace, "間")
+docs <- tm_map(docs, toSpace, "很")
+docs <- tm_map(docs, toSpace, "自")
+docs <- tm_map(docs, toSpace, "包括")
+docs <- tm_map(docs, toSpace, "可能")
+docs <- tm_map(docs, toSpace, "同")
+docs <- tm_map(docs, toSpace, "種")
+docs <- tm_map(docs, toSpace, "代")
+docs <- tm_map(docs, toSpace, "未")
+docs <- tm_map(docs, toSpace, "項")
+docs <- tm_map(docs, toSpace, "能")
+docs <- tm_map(docs, toSpace, "地")
+docs <- tm_map(docs, toSpace, "讓")
+docs <- tm_map(docs, toSpace, "現")
+docs <- tm_map(docs, toSpace, "去")
+docs <- tm_map(docs, toSpace, "地")
+docs <- tm_map(docs, toSpace, "樣")
+docs <- tm_map(docs, toSpace, "期")
+docs <- tm_map(docs, toSpace, "最")
+docs <- tm_map(docs, toSpace, "過")
+docs <- tm_map(docs, toSpace, "我")
+docs <- tm_map(docs, toSpace, "如果")
+docs <- tm_map(docs, toSpace, "那")
+docs <- tm_map(docs, toSpace, "近")
+docs <- tm_map(docs, toSpace, "通")
+docs <- tm_map(docs, toSpace, "看")
+docs <- tm_map(docs, toSpace, "顯示")
+docs <- tm_map(docs, toSpace, "得")
+docs <- tm_map(docs, removePunctuation)
+docs <- tm_map(docs, removeNumbers)
+docs <- tm_map(docs, stripWhitespace)
+docs
+```
+###製作文字雲
+```{r}
+mixseg = worker()
+jieba_tokenizer=function(d){
+  unlist(segment(d[[1]],mixseg))
+}
+seg = lapply(docs, jieba_tokenizer)
+freqFrame = as.data.frame(table(unlist(seg)))
+freqFrame = freqFrame[-c(1:34),]
+wordcloud(freqFrame$Var1,freqFrame$Freq,
+          scale=c(5,0.5),min.freq=10,max.words=50,
+          random.order=FALSE, random.color=TRUE, 
+          rot.per=0, colors=brewer.pal(8, "Dark2"),
+          ordered.colors=FALSE,use.r.layout=FALSE,
+          fixed.asp=TRUE)
+```
+
+###觀察
+>較長期可以發現,"美國""公司""國"是重點
+
+##(二)較短期趨勢
+>爬20筆貼文,相較第一部分希望看見近日產生的重要趨勢
+
+###文字清理
+```{r}
+library(NLP)
+library(tm)
+library(jiebaRD)
+library(jiebaR)
+library(slam)
+library(RColorBrewer)
+library(wordcloud)
+
+docs <- Corpus(VectorSource(page$message))
+toSpace <- content_transformer(function(x, pattern) {
+  return (gsub(pattern, " ", x))}
+)
+docs <- tm_map(docs, toSpace, "的")
+docs <- tm_map(docs, toSpace, "在")
+docs <- tm_map(docs, toSpace, "是")
+docs <- tm_map(docs, toSpace, "會")
+docs <- tm_map(docs, toSpace, "將")
+docs <- tm_map(docs, toSpace, "了")
+docs <- tm_map(docs, toSpace, "上")
+docs <- tm_map(docs, toSpace, "而")
+docs <- tm_map(docs, toSpace, "更")
+docs <- tm_map(docs, toSpace, "並")
+docs <- tm_map(docs, toSpace, "從")
+docs <- tm_map(docs, toSpace, "這")
+docs <- tm_map(docs, toSpace, "稱")
+docs <- tm_map(docs, toSpace, "對")
+docs <- tm_map(docs, toSpace, "但是")
+docs <- tm_map(docs, toSpace, "我們")
+docs <- tm_map(docs, toSpace, "到")
+docs <- tm_map(docs, toSpace, "也")
+docs <- tm_map(docs, toSpace, "與")
+docs <- tm_map(docs, toSpace, "就")
+docs <- tm_map(docs, toSpace, "和")
+docs <- tm_map(docs, toSpace, "為")
+docs <- tm_map(docs, toSpace, "他")
+docs <- tm_map(docs, toSpace, "可以")
+docs <- tm_map(docs, toSpace, "日")
+docs <- tm_map(docs, toSpace, "月")
+docs <- tm_map(docs, toSpace, "該")
+docs <- tm_map(docs, toSpace, "被")
+docs <- tm_map(docs, toSpace, "一個")
+docs <- tm_map(docs, toSpace, "不")
+docs <- tm_map(docs, toSpace, "正")
+docs <- tm_map(docs, toSpace, "有")
+docs <- tm_map(docs, toSpace, "以")
+docs <- tm_map(docs, toSpace, "來")
+docs <- tm_map(docs, toSpace, "個")
+docs <- tm_map(docs, toSpace, "人")
+docs <- tm_map(docs, toSpace, "其")
+docs <- tm_map(docs, toSpace, "但")
+docs <- tm_map(docs, toSpace, "等")
+docs <- tm_map(docs, toSpace, "還")
+docs <- tm_map(docs, toSpace, "說")
+docs <- tm_map(docs, toSpace, "已經")
+docs <- tm_map(docs, toSpace, "沒")
+docs <- tm_map(docs, toSpace, "都")
+docs <- tm_map(docs, toSpace, "成")
+docs <- tm_map(docs, toSpace, "後")
+docs <- tm_map(docs, toSpace, "因")
+docs <- tm_map(docs, toSpace, "所")
+docs <- tm_map(docs, toSpace, "於")
+docs <- tm_map(docs, toSpace, "中")
+docs <- tm_map(docs, toSpace, "年")
+docs <- tm_map(docs, toSpace, "表示")
+docs <- tm_map(docs, toSpace, "多")
+docs <- tm_map(docs, toSpace, "及")
+docs <- tm_map(docs, toSpace, "至")
+docs <- tm_map(docs, toSpace, "由")
+docs <- tm_map(docs, toSpace, "們")
+docs <- tm_map(docs, toSpace, "向")
+docs <- tm_map(docs, toSpace, "家")
+docs <- tm_map(docs, toSpace, "前")
+docs <- tm_map(docs, toSpace, "本")
+docs <- tm_map(docs, toSpace, "些")
+docs <- tm_map(docs, toSpace, "時")
+docs <- tm_map(docs, toSpace, "一")
+docs <- tm_map(docs, toSpace, "之")
+docs <- tm_map(docs, toSpace, "目")
+docs <- tm_map(docs, toSpace, "即")
+docs <- tm_map(docs, toSpace, "此")
+docs <- tm_map(docs, toSpace, "當")
+docs <- tm_map(docs, toSpace, "達")
+docs <- tm_map(docs, toSpace, "它")
+docs <- tm_map(docs, toSpace, "兩")
+docs <- tm_map(docs, toSpace, "大")
+docs <- tm_map(docs, toSpace, "下")
+docs <- tm_map(docs, toSpace, "位")
+docs <- tm_map(docs, toSpace, "新")
+docs <- tm_map(docs, toSpace, "間")
+docs <- tm_map(docs, toSpace, "很")
+docs <- tm_map(docs, toSpace, "自")
+docs <- tm_map(docs, toSpace, "包括")
+docs <- tm_map(docs, toSpace, "可能")
+docs <- tm_map(docs, toSpace, "同")
+docs <- tm_map(docs, toSpace, "種")
+docs <- tm_map(docs, toSpace, "代")
+docs <- tm_map(docs, toSpace, "未")
+docs <- tm_map(docs, toSpace, "項")
+docs <- tm_map(docs, toSpace, "能")
+docs <- tm_map(docs, toSpace, "地")
+docs <- tm_map(docs, toSpace, "讓")
+docs <- tm_map(docs, toSpace, "現")
+docs <- tm_map(docs, toSpace, "去")
+docs <- tm_map(docs, toSpace, "地")
+docs <- tm_map(docs, toSpace, "樣")
+docs <- tm_map(docs, toSpace, "期")
+docs <- tm_map(docs, toSpace, "最")
+docs <- tm_map(docs, toSpace, "過")
+docs <- tm_map(docs, toSpace, "我")
+docs <- tm_map(docs, toSpace, "如果")
+docs <- tm_map(docs, toSpace, "那")
+docs <- tm_map(docs, toSpace, "近")
+docs <- tm_map(docs, toSpace, "通")
+docs <- tm_map(docs, toSpace, "看")
+docs <- tm_map(docs, toSpace, "顯示")
+docs <- tm_map(docs, toSpace, "得")
+docs <- tm_map(docs, toSpace, "恩")
+docs <- tm_map(docs, toSpace, "如")
+docs <- tm_map(docs, toSpace, "平")
+docs <- tm_map(docs, removePunctuation)
+docs <- tm_map(docs, removeNumbers)
+docs <- tm_map(docs, stripWhitespace)
+docs
+```
+###製作文字雲
+```{r}
+mixseg = worker()
+jieba_tokenizer=function(d){
+  unlist(segment(d[[1]],mixseg))
+}
+seg = lapply(docs, jieba_tokenizer)
+freqFrame = as.data.frame(table(unlist(seg)))
+freqFrame = freqFrame[-c(1:34),]
+wordcloud(freqFrame$Var1,freqFrame$Freq,
+          scale=c(5,0.5),min.freq=10,max.words=50,
+          random.order=FALSE, random.color=TRUE, 
+          rot.per=0, colors=brewer.pal(8, "Dark2"),
+          ordered.colors=FALSE,use.r.layout=FALSE,
+          fixed.asp=TRUE)
+```
+
+###觀察
+>較短期可以看見最近蠻熱門的議題(e.g北韓,Uber),但蠻意外"藝術"的比例很高
