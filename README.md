@@ -10,6 +10,8 @@
 ## "The process of learning and developing is more important than the outcome."
 ---
 ### Week1
+> Homework:
+
 * In class 
   1. Sign up a Github account
   2. Install Git windows
@@ -21,6 +23,8 @@
   2. Review some basic knowledge of R
 
 ### Week2
+> Homework:白經濟網站爬蟲
+
 * Before class
   1. Learn function and pipe
   2. Figure out how **Markdown** work
@@ -41,6 +45,8 @@
   4. Try some web crawling and upload my work
    
 ### Week3
+> Homework:
+
 * Before class
   1. Preview week3 ppt
 * In class
@@ -55,6 +61,8 @@
   6. Use **ggmap** to show Japan map(ggmapjpn)
   
 ### Week4
+> Homework:彭博商業週刊fb文字雲
+
 * Before class
   1. Preview week4 ppt
   2. Edit README
