@@ -1,0 +1,52 @@
+---
+title: "Talk Econ web crawler"
+author: "Viviantsui0514"
+date: "2018年3月30日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+#白經濟網站爬蟲
+##(一)文章標題
+>運用**SelecotrGadget**找到標題規律
+```{r}
+library(rvest)
+
+title=read_html("https://talkecon.com/archive-post/")   
+title=html_nodes(title,"#main .entry-content a")   
+title=html_text(title)  
+title=iconv(title,"UTF-8")
+title
+```
+##(二)文章連結
+>雖然與標題規律相同,可用**開發人員**工具找到小標籤"href"
+```{r}
+urls=read_html("https://talkecon.com/archive-post/") 
+urls=html_nodes(urls,"#main .entry-content a")  
+urls=html_attr(urls,"href")  
+urls
+```
+##(三)文章內容
+>利用**迴圈**產生list,測試時可以只跑幾筆(140筆花費很久)
+
+* how to adds elements to a list in a loop
+* https://stackoverflow.com/questions/26508519/how-to-add-elements-to-a-list-in-r-loop
+```{r}
+totaldata = list()
+for (i in 1:140){
+  content=read_html(urls[i])
+  content=html_nodes(content,".entry-content")  
+  content=html_text(content, trim=F)
+  totaldata[i] = content
+}
+totaldata
+```
+###(四)綜合版
+>利用**data.table**套件
+```{r}
+library(data.table)
+article <- data.table(Title = title, Link = url, Content = totaldata)
+```
+
