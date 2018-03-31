@@ -10,7 +10,7 @@
 ## "The process of learning and developing is more important than the outcome."
 ---
 ### Week1
-> Homework:
+> Homework:R基礎
 
 * In class 
   1. Sign up a Github account
@@ -73,3 +73,6 @@
 * After class
   1. Submit week hw (kikuChen fb)
   2. Use [geojson](http://geojson.io/#map=2/20.0/0.0) to show NTU main campus
+  
+###　Week5
+> Homework:
