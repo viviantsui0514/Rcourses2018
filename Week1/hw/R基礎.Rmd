@@ -1,5 +1,5 @@
 ---
-title: "hw_1"
+title: "R基礎"
 author: "Viviantsui0514"
 date: "2018年3月31日"
 output: html_document
@@ -8,12 +8,14 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-#R基礎
+#Introduction
+* 想寫厲害的Project,R基礎很重要!
+* Week1把重心放在補齊以前遺漏的知識
 
 ##Task 1
 
 >分析iris資料集
-
+* 這些還記得, 快速寫完並簡單複習一下相關函數
 ```{r}
 # 查看內建資料集: 鳶尾花(iris)資料集
 iris
@@ -35,17 +37,21 @@ summary(iris)
 
 ##Task 2
 >[九九乘法表](https://www.datamentor.io/r-programming/examples/multiplication-table)
+* 一開始沒有頭緒, 先翻了老師推薦的**for loop**資料, 在文章最後example連結找到相關資料
+* **paste**有間隔, **paste0**沒有
 ```{r}
 # 使用for loop 印出九九乘法表
 # Ex: (1x1=1 1x2=2...1x9=9 ~ 9x1=9 9x2=18... 9x9=81)
 x <- c(1,2,3,4,5,6,7,8,9)
 for(i in x) {
-  print(paste(i,'x', x, '=', i*x))
+  print(paste0(i,'x', x, '=', i*x))
 }
 ```
 
 ##Task3
->**for loop** 以及 **if-else**
+>**sample** 以及 **if-else**
+* 題目條件增加,在for,if,else順序間嘗試(原來else可以再包if)
+* 查詢偶數的條件
 ```{r}
 # 使用sample(), 產出10個介於10~100的整數，並存在變數 nums
 x <- 10:100
@@ -67,7 +73,10 @@ for (i in nums){
 ```
 
 ##Task4
->注意[閏年公式](http://tieba.baidu.com/p/5194809464)
+>[閏年公式](http://tieba.baidu.com/p/5194809464)
+*搜尋如何輸入年分
+*搜尋閏年公式(原來不是除4就好, 還好相信直覺google一下)
+*覺得TRUE or False太無趣,選擇中文加語助詞(有自己風格的感覺)
 ```{r}
 # 請寫一段程式碼，能判斷輸入之西元年分 year 是否為閏年
 year <- as.integer(readline(prompt="Enter a year: "))
@@ -80,12 +89,15 @@ if((year %% 4 == 0 & year %% 100 != 0)|(year %% 400 == 0)){
 
 ##Task5
 >猜數字遊戲(隨機-**sample**, 整合四位數-**as.integer**)
+* 這題比較難,把它分成兩小題,分開解
+* 第一區sample進階版,分開產生數字再整合
+* 第二區排條件,完成1A2B結果顯示
+* 過程中可以先多加一行answer, 確認猜對後的結果
 ```{r}
 # 猜數字遊戲
 # 1. 請寫一個由電腦隨機產生不同數字的四位數(1A2B遊戲)
 # 2. 玩家可重覆猜電腦所產生的數字，並提示猜測的結果(EX:1A2B)
 # 3. 一旦猜對，系統可自動計算玩家猜測的次數
-
 
 #第一部分
 m <- 0

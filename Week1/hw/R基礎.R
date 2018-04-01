@@ -26,7 +26,7 @@ summary(iris)
 # Ex: (1x1=1 1x2=2...1x9=9 ~ 9x1=9 9x2=18... 9x9=81)
 x <- c(1,2,3,4,5,6,7,8,9)
 for(i in x) {
-  print(paste(i,'x', x, '=', i*x))
+  print(paste0(i,'x', x, '=', i*x))
 }
 
 
