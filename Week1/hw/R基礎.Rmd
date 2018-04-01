@@ -8,11 +8,11 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-#Introduction
+# Introduction
 * 想寫厲害的Project,R基礎很重要!
 * Week1把重心放在補齊以前遺漏的知識
 
-##Task 1
+## Task 1
 
 >分析iris資料集
 * 這些還記得, 快速寫完並簡單複習一下相關函數
@@ -35,7 +35,7 @@ str(iris)
 summary(iris)
 ```
 
-##Task 2
+## Task 2
 >[九九乘法表](https://www.datamentor.io/r-programming/examples/multiplication-table)
 * 一開始沒有頭緒, 先翻了老師推薦的**for loop**資料, 在文章最後example連結找到相關資料
 * **paste**有間隔, **paste0**沒有
@@ -48,7 +48,7 @@ for(i in x) {
 }
 ```
 
-##Task3
+## Task3
 >**sample** 以及 **if-else**
 * 題目條件增加,在for,if,else順序間嘗試(原來else可以再包if)
 * 查詢偶數的條件
@@ -72,8 +72,9 @@ for (i in nums){
    }
 ```
 
-##Task4
+## Task4
 >[閏年公式](http://tieba.baidu.com/p/5194809464)
+
 *搜尋如何輸入年分
 *搜尋閏年公式(原來不是除4就好, 還好相信直覺google一下)
 *覺得TRUE or False太無趣,選擇中文加語助詞(有自己風格的感覺)
@@ -87,7 +88,7 @@ if((year %% 4 == 0 & year %% 100 != 0)|(year %% 400 == 0)){
 }
 ```
 
-##Task5
+## Task5
 >猜數字遊戲(隨機-**sample**, 整合四位數-**as.integer**)
 * 這題比較難,把它分成兩小題,分開解
 * 第一區sample進階版,分開產生數字再整合
