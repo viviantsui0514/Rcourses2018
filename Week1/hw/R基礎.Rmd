@@ -75,9 +75,9 @@ for (i in nums){
 ## Task4
 >[閏年公式](http://tieba.baidu.com/p/5194809464)
 
-*搜尋如何輸入年分
-*搜尋閏年公式(原來不是除4就好, 還好相信直覺google一下)
-*覺得TRUE or False太無趣,選擇中文加語助詞(有自己風格的感覺)
+* 搜尋如何輸入年分
+* 搜尋閏年公式(原來不是除4就好, 還好相信直覺google一下)
+* 覺得TRUE or False太無趣,選擇中文加語助詞(有自己風格的感覺)
 ```{r}
 # 請寫一段程式碼，能判斷輸入之西元年分 year 是否為閏年
 year <- as.integer(readline(prompt="Enter a year: "))
