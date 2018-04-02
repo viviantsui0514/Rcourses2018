@@ -45,7 +45,7 @@
   4. Try some web crawling and upload my work
    
 ### Week3
-> Homework:
+> Homework:台灣M1B和M2
 
 * Before class
   1. Preview week3 ppt
