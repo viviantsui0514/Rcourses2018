@@ -8,10 +8,10 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-#彭博tf-idf
+# 彭博tf-idf
 
-##FB API
->彭博商業週刊粉專
+## FB API
+> 彭博商業週刊粉專
 ```{r}
 library(Rfacebook)
 token <- "EAACEdEose0cBADSZCqNxjLETepd1kEZAfHvwwY37BQ6qQGYpqKGTKi6hIXul9ZCTzPvdbQgHIrsbfzOZB9SRayvjbmQyoHm5GftnnS684NZAzU7froCe0QYt3Rn5uuuZAIFc2YGiJNrS8ZBczBbPfH3ZALGAXuPahi64j8YEUKFwcZAn47uDZCPRpdxNnNhGKPgWw7TanHJ6sTIgZDZD"
@@ -58,14 +58,14 @@ freqFrame <- freqFrame[-c(1:34),]
 tail(freqFrame)
 ```
 
-##建立詞頻矩陣
+## 建立詞頻矩陣
 ```{r}
 d.corpus <- Corpus(VectorSource(seg))
 tdm <- TermDocumentMatrix(d.corpus, control = list(wordLengths = c(2, Inf)))
 inspect(tdm)
 ```
 
-##建立tf-idf
+## 建立tf-idf
 ```{r}
 library(SnowballC)
 library(slam)
