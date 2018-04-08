@@ -74,5 +74,19 @@
   1. Submit week hw (kikuChen fb)
   2. Use [geojson](http://geojson.io/#map=2/20.0/0.0) to show NTU main campus
 
-###　Week5
-> Homework:
+### Week5
+> Homework: 彭博tf-idf
+
+ * In class
+   1. Learn about EDA
+   2. Learn about tf-idf
+   2. Review Week1-Week4
+   
+ * After class
+   1. Adjust hw of Week1-Week4
+   2. Finish hw5
+   3. Learn about **jiebaR** and **quanteda** 
+   4. Struggling with tf-idf visualization
+   5. Finish Project1
+   
+ > Project1: The NewYork Times分析
