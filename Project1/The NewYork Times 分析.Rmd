@@ -88,7 +88,7 @@ ggplot(a,aes(y=a$text1,x=rownames(a)))+geom_bar(stat = "identity")+ xlab("word")
 ```{r}
 b <- as.data.frame(sort(docs.tfidf[,1],decreasing = TRUE)[1:5])
 colnames(b) <- "text1keyword"
-ggplot(b,aes(y=b$text1keyword, x = rownames(b))) +geom_bar(stat = "identity",aes(fill = ))+ xlab("word")+ ylab("TFIDF")+ coord_flip()
+ggplot(b,aes(y=b$text1keyword, x = rownames(b))) +geom_bar(stat = "identity")+ xlab("word")+ ylab("TFIDF")+ coord_flip()
 ```
 
 * 感覺用字比較艱澀, 不太平易近人(或著是我英文太爛QQ)
