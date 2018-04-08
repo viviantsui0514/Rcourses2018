@@ -1,11 +1,33 @@
+---
+title: "NewYork Times分析"
+author: "Viviantsui0514"
+date: "2018年4月8日"
+output: html_document
+---
+# Introduction
+
+這次我選擇對The New York Times粉專進行分析,並利用tf-idf和visualization的技巧作呈現.
+雖然偶爾會看到紐約時報中文版的文章分享,但平常並沒有持續關注The New York Times, 所以想了解粉專文字的重點面向.有別於之前一直嘗試的中文版本分析, 我也首次利用了quanteda套件來斷詞和分析英文文章.
+
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 利用fb api抓過去三個月的文章
+```{r}
 library(Rfacebook)
-token <- "EAACEdEose0cBAHaBFKdd9HyowOfJjdoWusgdtvMC2KUSbstYbkLigZAM1Fqh0bDboweJOUufcQjHPZCvl3OZA07NifnzdRy8fIKDt5bSLPm70PZBdtKUirZAEOzZBqfQueEbX7yLiMAmPw1UhRhgTLMQ1NXc6tE03J4ZCEWMdWnYgjTAZCxqkhHZBHybmC8LxZBUdiZCGXGdjPH2wZDZD"
+token <- "EAACEdEose0cBADII9SriSs33rd4ZCAdP3kZCT6VfhAf4JT4wQLlRzwFRN5gEzzwtTHbdBhky2TU0uQUKJN1wOi2CpOT4AbzijvDZAZBP3xOMJZCrtWxbLHzaBlk1lQPffpqsZAlIfeVf8jAppmSVJyvcTfyhw2pYrK9fPjuQWa6mQ8MayaRx4nmZAZAGOX6dkuLe8xOGDUM1cQZDZD"
 me <- getUsers("me", token, private_info = TRUE)
 me$name
 page.id <- "5281959998" 
 page <- getPage(page.id, token=token, n = 300, since = "2018/1/1", until = "2018/4/1")
-
-
+```
+ 
+## 利用quanteda套件對article做清理
+```{r}
 library(quanteda)
 train.tokens <- tokens(page$message, what = "word",
                        remove_numbers = TRUE, remove_punct = TRUE,
@@ -18,7 +40,11 @@ train.tokens <- tokens_select(train.tokens,c("new","york"),
 train.tokens <- tokens_select(train.tokens,"one",
                               selection = "remove")
 train.tokens <- tokens_wordstem(train.tokens, language = "english")
+```
 
+## 形成TermDocumentMatrix, DocumentTermMatrix 
+## 把出現頻率大於12次的詞畫成Frequent Plot
+```{r}
 train.tokens.dfm <- dfm(train.tokens, tolower = FALSE, remove = stopwords())
 dtm <- as.matrix(train.tokens.dfm)
 tdm <- t(dtm)
@@ -28,33 +54,50 @@ library(ggplot2)
 df <- data.frame(term=names(termFrequency), freq=termFrequency)
 ggplot(df, aes(x=term, y=freq)) + geom_bar(stat="identity") +
   xlab("Terms") + ylab("Count") + coord_flip()
-#關注焦點: president Donald Trump
 
+```
 
+* 關注焦點: president Donald Trump
+* 感覺報導是以美國國內事務為主
+
+## 製作tf-idf
+```{r}
 tf <- function(row){
   row / sum(row)
 }
-
 idf <- function(col){
   corpus.size <- length(col)
   doc.count <- length(which(col>0))
   log10(corpus.size / doc.count)
 }
-
 tf.idf <- function(tf,idf){
   tf * idf
 }
-
 docs.df <- apply(dtm, 1, tf)
 docs.idf <- apply(dtm, 2, idf)
 docs.tfidf <- apply(docs.df, 2, tf.idf, idf <- docs.idf)
+```
 
+## 畫出前6個詞在text1中的tfidf
+```{r}
 a <- as.data.frame(head(docs.tfidf[,1:5]))
 ggplot(a,aes(y=a$text1,x=rownames(a)))+geom_bar(stat = "identity")+ xlab("word")+ ylab("TFIDF")
+```
 
-
+## 畫出text1中tfidf最高的關鍵字
+```{r}
 b <- as.data.frame(sort(docs.tfidf[,1],decreasing = TRUE)[1:5])
 colnames(b) <- "text1keyword"
 ggplot(b,aes(y=b$text1keyword, x = rownames(b))) +geom_bar(stat = "identity",aes(fill = ))+ xlab("word")+ ylab("TFIDF")+ coord_flip()
+```
 
+* 感覺用字比較艱澀, 不太平易近人(或著是我英文太爛QQ)
+* 註:factual  = 事實
+
+# Conclusion
+透過這次分析, 我知道為甚麼自己沒有關注The New York Times了.
+
+* **關注重點不同**: 新聞以美國國內事務為主, 對其他地區較少關注.我比較喜歡對全球都有關注的媒體.
+
+* **用字較艱澀**: 閱讀起來比較費力
 
