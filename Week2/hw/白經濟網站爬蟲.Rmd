@@ -1,5 +1,5 @@
 ---
-title: "Talk Econ web crawler"
+title: "白經濟網站爬蟲"
 author: "Viviantsui0514"
 date: "2018年3月30日"
 output: html_document
@@ -8,8 +8,11 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-#白經濟網站爬蟲
-##(一)文章標題
+# Introduction
+
+白經濟的網站文章會利用經濟學的知識探討一些有趣的文章, 我平常蠻喜歡看的.利用爬蟲收集了網站的資料, 以後學了更多R的知識後就可以進一步分析這個優質網站了.  
+
+##(一)文章標題(前20篇)
 >運用**SelecotrGadget**找到標題規律
 ```{r}
 library(rvest)
@@ -18,17 +21,17 @@ title=read_html("https://talkecon.com/archive-post/")
 title=html_nodes(title,"#main .entry-content a")   
 title=html_text(title)  
 title=iconv(title,"UTF-8")
-title
+title[1:20]
 ```
-##(二)文章連結
+##(二)文章連結(第三篇)
 >雖然與標題規律相同,可用**開發人員**工具找到小標籤"href"
 ```{r}
 urls=read_html("https://talkecon.com/archive-post/") 
 urls=html_nodes(urls,"#main .entry-content a")  
 urls=html_attr(urls,"href")  
-urls
+urls[3]
 ```
-##(三)文章內容
+##(三)文章內容(第五篇)
 >利用**迴圈**產生list,測試時可以只跑幾筆(140筆花費很久)
 
 * how to adds elements to a list in a loop
@@ -41,12 +44,16 @@ for (i in 1:140){
   content=html_text(content, trim=F)
   totaldata[i] = content
 }
-totaldata
+totaldata[[5]]
 ```
 ###(四)綜合版
->利用**data.table**套件
+>利用**data.table**套件 + 存檔
 ```{r}
 library(data.table)
 article <- data.table(Title = title, Link = url, Content = totaldata)
+##  存檔
+##  write.table(totaldata,file="C:\\Users\\vivian\\Desktop\\Rcourse2018\\Week3\\白經濟資料\\totaldata.txt",sep=" ")
+
+
 ```
 
