@@ -9,8 +9,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+#Introduction
 
->結合**R的ggplot2**和**貨幣銀行學**知識, 觀察台灣M1B和M2
+我上學期修了貨幣銀行學, 建立了對貨幣的基本概念.那時想要分析央行數據的話,都是利用excel製作圖表,只知道如何選擇製作圖表, 卻沒想過背後蘊含的程式意涵. 這次我想結合R的ggplot2和貨幣銀行學知識, 製作圖表觀察台灣M1B和M2.
 
 * 資料來源: [中央銀行統計資料庫](https://www.cbc.gov.tw/CPX/Tree/TreeSelect#Content)
 
