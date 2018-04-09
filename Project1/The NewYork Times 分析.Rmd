@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## 利用fb api抓過去三個月的文章
 ```{r}
 library(Rfacebook)
-token <- "EAACEdEose0cBADII9SriSs33rd4ZCAdP3kZCT6VfhAf4JT4wQLlRzwFRN5gEzzwtTHbdBhky2TU0uQUKJN1wOi2CpOT4AbzijvDZAZBP3xOMJZCrtWxbLHzaBlk1lQPffpqsZAlIfeVf8jAppmSVJyvcTfyhw2pYrK9fPjuQWa6mQ8MayaRx4nmZAZAGOX6dkuLe8xOGDUM1cQZDZD"
+token <- "EAACEdEose0cBAEd0TZA3Ijw8FW54Ja2rJ5HBPWGYOBizZAFZAvQE84YapbC8o7I5Q3ZAy4Bw5irguuKyGYdSYPEZAcoPLnZCHql5E2CcK9TDlN4F6WM2dxFm5angp0a2GkoWke1BdVhavaB23cAom5U25sO5I9ycIwtD5PVhTXjSZBsfZAs7P6M8sIg8ZBAkBrLSWZB3SrcFlEzwZDZD"
 me <- getUsers("me", token, private_info = TRUE)
 me$name
 page.id <- "5281959998" 
@@ -94,8 +94,19 @@ ggplot(b,aes(y=b$text1keyword, x = rownames(b))) +geom_bar(stat = "identity")+ x
 * 感覺用字比較艱澀, 不太平易近人(或著是我英文太爛QQ)
 * 註:factual  = 事實
 
+## 畫出trump在300篇文章中的tfidf變化
+
+```{r}
+c <- as.data.frame(docs.tfidf["trump",])
+colnames(c) <- "text"
+ggplot(c,aes(x = rownames(c), y = c$text)) + geom_bar(stat = "identity")+ xlab("text")+ ylab("TFIDF")
+```
+
+* 總體來說,都有在持續關注trump.
+  粗線應該是表示trump動作比較多的時期.
+  
 # Conclusion
-透過這次分析, 我知道為甚麼自己沒有關注The New York Times了.
+透過這次分析, 我知道為甚麼自己沒有關注The New York Times了 XD
 
 * **關注重點不同**: 新聞以美國國內事務為主, 對其他地區較少關注.我比較喜歡對全球都有關注的媒體.
 

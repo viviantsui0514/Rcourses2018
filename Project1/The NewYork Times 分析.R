@@ -1,5 +1,5 @@
 library(Rfacebook)
-token <- "EAACEdEose0cBAHaBFKdd9HyowOfJjdoWusgdtvMC2KUSbstYbkLigZAM1Fqh0bDboweJOUufcQjHPZCvl3OZA07NifnzdRy8fIKDt5bSLPm70PZBdtKUirZAEOzZBqfQueEbX7yLiMAmPw1UhRhgTLMQ1NXc6tE03J4ZCEWMdWnYgjTAZCxqkhHZBHybmC8LxZBUdiZCGXGdjPH2wZDZD"
+token <- "EAACEdEose0cBAMTUhELoAvSvDag0ZCinTNpa6XCx3t3lRJX8Kl1GAhn6QA7HnerAtrOFV4ndECqHYBB1tACvBFNTbDFHTNbnL5MlZCWfw3APi7E4uR1HqAMo8eOPtNJDLe0nZAJZC1rkHXtXq7IpWdzwXJ8vfswZARGLURMQzufXzHgjVZBV08To1kT3JDOFHSNdAXi7qZAeAZDZD"
 me <- getUsers("me", token, private_info = TRUE)
 me$name
 page.id <- "5281959998" 
@@ -58,3 +58,6 @@ colnames(b) <- "text1keyword"
 ggplot(b,aes(y=b$text1keyword, x = rownames(b))) +geom_bar(stat = "identity")+ xlab("word")+ ylab("TFIDF")+ coord_flip()
 
 
+c <- as.data.frame(docs.tfidf["trump",])
+colnames(c) <- "text"
+ggplot(c,aes(x = rownames(c), y = c$text)) + geom_bar(stat = "identity")+ xlab("text")+ ylab("TFIDF")
