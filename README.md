@@ -88,4 +88,4 @@
    4. Struggling with tf-idf visualization
    5. Finish Project1
    
- > Project1: The NewYork Times分析
+ > Project1: [The NewYork Times分析](https://htmlpreview.github.io/?https://github.com/viviantsui0514/Rcourses2018/blob/master/Project1/The_NewYork_Times_%E5%88%86%E6%9E%90.html)
