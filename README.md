@@ -10,7 +10,7 @@
 ## "The process of learning and developing is more important than the outcome."
 ---
 ### Week1
-> Homework:[R基礎](https://github.com/viviantsui0514/Rcourses2018/tree/master/Week1/hw)
+> Homework:R基礎
 
 * In class 
   1. Sign up a Github account
@@ -23,8 +23,7 @@
   2. Review some basic knowledge of R
 
 ### Week2
-> Homework:[白經濟網站爬蟲](https://github.com/viviantsui0514/Rcourses2018/tree/master/Week2/hw)
-
+> Homework:白經濟網站爬蟲
 * Before class
   1. Learn function and pipe
   2. Figure out how **Markdown** work
@@ -45,7 +44,7 @@
   4. Try some web crawling and upload my work
    
 ### Week3
-> Homework:[台灣M1B和M2](https://github.com/viviantsui0514/Rcourses2018/tree/master/Week3/hw)
+> Homework:台灣M1B和M2
 
 * Before class
   1. Preview week3 ppt
@@ -61,7 +60,7 @@
   6. Use **ggmap** to show Japan map(ggmapjpn)
   
 ### Week4
-> Homework:[彭博商業週刊fb文字雲](https://github.com/viviantsui0514/Rcourses2018/tree/master/Week4)
+> Homework:彭博商業週刊fb文字雲
 
 * Before class
   1. Preview week4 ppt
@@ -75,7 +74,7 @@
   2. Use [geojson](http://geojson.io/#map=2/20.0/0.0) to show NTU main campus
 
 ### Week5
-> Homework: [彭博tf-idf](https://github.com/viviantsui0514/Rcourses2018/tree/master/Week5/hw)
+> Homework: 彭博tf-idf
 
  * In class
    1. Learn about EDA
@@ -89,4 +88,4 @@
    4. Struggling with tf-idf visualization
    5. Finish Project1
    
- > Project1: [The NewYork Times分析](https://github.com/viviantsui0514/Rcourses2018/blob/master/Project1/The_NewYork_Times_%E5%88%86%E6%9E%90.html)
+ > Project1: The NewYork Times分析
