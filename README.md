@@ -23,7 +23,8 @@
   2. Review some basic knowledge of R
 
 ### Week2
-> Homework:白經濟網站爬蟲
+> Homework:[白經濟網站爬蟲](http://htmlpreview.github.io/?https://github.com/viviantsui0514/Rcourses2018/blob/master/Week2/hw/%E7%99%BD%E7%B6%93%E6%BF%9F%E7%B6%B2%E7%AB%99%E7%88%AC%E8%9F%B2.html)
+
 * Before class
   1. Learn function and pipe
   2. Figure out how **Markdown** work
@@ -44,7 +45,7 @@
   4. Try some web crawling and upload my work
    
 ### Week3
-> Homework:台灣M1B和M2
+> Homework:[台灣M1B和M2](https://github.com/viviantsui0514/Rcourses2018/blob/master/Week3/hw/%E5%8F%B0%E7%81%A3M1B%E5%92%8CM2.html)
 
 * Before class
   1. Preview week3 ppt
@@ -60,7 +61,7 @@
   6. Use **ggmap** to show Japan map(ggmapjpn)
   
 ### Week4
-> Homework:彭博商業週刊fb文字雲
+> Homework:[彭博商業週刊fb文字雲](http://htmlpreview.github.io/?https://github.com/viviantsui0514/Rcourses2018/blob/master/Week4/hw/%E5%BD%AD%E5%8D%9Afb.html)
 
 * Before class
   1. Preview week4 ppt
@@ -74,7 +75,7 @@
   2. Use [geojson](http://geojson.io/#map=2/20.0/0.0) to show NTU main campus
 
 ### Week5
-> Homework: 彭博tf-idf
+> Homework: [彭博tf-idf](http://htmlpreview.github.io/?https://github.com/viviantsui0514/Rcourses2018/blob/master/Week5/hw/%E5%BD%AD%E5%8D%9Atf-idf.html)
 
  * In class
    1. Learn about EDA
