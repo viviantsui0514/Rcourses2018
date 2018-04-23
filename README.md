@@ -45,7 +45,7 @@
   4. Try some web crawling and upload my work
    
 ### Week3
-> Homework:[台灣M1B和M2](https://github.com/viviantsui0514/Rcourses2018/blob/master/Week3/hw/%E5%8F%B0%E7%81%A3M1B%E5%92%8CM2.html)
+> Homework:[台灣M1B和M2](https://htmlpreview.github.io/?https://github.com/viviantsui0514/Rcourses2018/blob/master/Week3/hw/%E5%8F%B0%E7%81%A3M1B%E5%92%8CM2.html)
 
 * Before class
   1. Preview week3 ppt
