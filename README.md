@@ -10,7 +10,7 @@
 ## "The process of learning and developing is more important than the outcome."
 ---
 ### Week1
-> Homework:R基礎
+> Homework:[R基礎(rmd檔)](https://github.com/viviantsui0514/Rcourses2018/blob/master/Week1/hw/R%E5%9F%BA%E7%A4%8E.Rmd)
 
 * In class 
   1. Sign up a Github account
