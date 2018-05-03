@@ -90,3 +90,12 @@
    5. Finish Project1
    
  > Project1: [The NewYork Times分析](https://htmlpreview.github.io/?https://github.com/viviantsui0514/Rcourses2018/blob/master/Project1/The_NewYork_Times_%E5%88%86%E6%9E%90.html)
+ 
+ ### Week8
+ > Group project: [Titanic machine learning](https://viviantsui0514.github.io/Rcourses2018/Week8/hw8.html)
+ 
+ * Using model
+   1. rf (result)
+   2. svm
+   3. gbm (result)
+ 
