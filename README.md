@@ -23,7 +23,7 @@
   2. Review some basic knowledge of R
 
 ### Week2
-> Homework:[白經濟網站爬蟲](http://htmlpreview.github.io/?https://github.com/viviantsui0514/Rcourses2018/blob/master/Week2/hw/%E7%99%BD%E7%B6%93%E6%BF%9F%E7%B6%B2%E7%AB%99%E7%88%AC%E8%9F%B2.html)
+> Homework:[白經濟網站爬蟲](https://viviantsui0514.github.io/Rcourses2018/Week2/hw/%E7%99%BD%E7%B6%93%E6%BF%9F%E7%B6%B2%E7%AB%99%E7%88%AC%E8%9F%B2.html)
 
 * Before class
   1. Learn function and pipe
@@ -45,7 +45,7 @@
   4. Try some web crawling and upload my work
    
 ### Week3
-> Homework:[台灣M1B和M2](https://htmlpreview.github.io/?https://github.com/viviantsui0514/Rcourses2018/blob/master/Week3/hw/%E5%8F%B0%E7%81%A3M1B%E5%92%8CM2.html)
+> Homework:[台灣M1B和M2](https://viviantsui0514.github.io/Rcourses2018/Week3/hw/%E5%8F%B0%E7%81%A3M1B%E5%92%8CM2.html)
 
 * Before class
   1. Preview week3 ppt
@@ -61,7 +61,7 @@
   6. Use **ggmap** to show Japan map(ggmapjpn)
   
 ### Week4
-> Homework:[彭博商業週刊fb文字雲](http://htmlpreview.github.io/?https://github.com/viviantsui0514/Rcourses2018/blob/master/Week4/hw/%E5%BD%AD%E5%8D%9Afb.html)
+> Homework:[彭博商業週刊fb文字雲](https://viviantsui0514.github.io/Rcourses2018/Week4/hw/%E5%BD%AD%E5%8D%9Afb.html)
 
 * Before class
   1. Preview week4 ppt
@@ -75,7 +75,7 @@
   2. Use [geojson](http://geojson.io/#map=2/20.0/0.0) to show NTU main campus
 
 ### Week5
-> Homework: [彭博tf-idf](http://htmlpreview.github.io/?https://github.com/viviantsui0514/Rcourses2018/blob/master/Week5/hw/%E5%BD%AD%E5%8D%9Atf-idf.html)
+> Homework: [彭博tf-idf](https://viviantsui0514.github.io/Rcourses2018/Week5/hw/%E5%BD%AD%E5%8D%9Atf-idf.html)
 
  * In class
    1. Learn about EDA
@@ -89,7 +89,7 @@
    4. Struggling with tf-idf visualization
    5. Finish Project1
    
- > Project1: [The NewYork Times分析](https://htmlpreview.github.io/?https://github.com/viviantsui0514/Rcourses2018/blob/master/Project1/The_NewYork_Times_%E5%88%86%E6%9E%90.html)
+ > Project1: [The NewYork Times分析](https://viviantsui0514.github.io/Rcourses2018/Project1/The_NewYork_Times_%E5%88%86%E6%9E%90.html)
  
  ### Week8
  > Group project: [Titanic machine learning](https://viviantsui0514.github.io/Rcourses2018/Week8/hw8.html)
