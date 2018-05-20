@@ -92,7 +92,7 @@
  > Project1: [The NewYork Times分析](https://viviantsui0514.github.io/Rcourses2018/Project1/The_NewYork_Times_%E5%88%86%E6%9E%90.html)
  
  ### Week8
- > Group project3: [Titanic machine learning](https://viviantsui0514.github.io/Rcourses2018/Week8/hw8.html)
+ > Group project3: [Titanic machine learning](https://viviantsui0514.github.io/Rcourses2018/Project3/project3.html)
  
  * Using model
    1. rf (result)
@@ -100,5 +100,5 @@
    3. gbm (result)
  
  ### Week10
- > Group project2: [Kaggle analyze](https://viviantsui0514.github.io/Rcourses2018/Project2/Project2.html)
- 
+ > Group project2:  [Kaggle analysis rmd](https://viviantsui0514.github.io/Rcourses2018/Project2/Project2.html)
+                   + [Kaggle analysis ppt]()
