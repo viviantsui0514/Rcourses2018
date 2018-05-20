@@ -101,4 +101,4 @@
  
  ### Week10
  > Group project2:  [Kaggle analysis rmd](https://viviantsui0514.github.io/Rcourses2018/Project2/Project2.html)
-                   + [Kaggle analysis ppt]()
+                   + [Kaggle analysis ppt](https://viviantsui0514.github.io/Rcourses2018/Project2/project2.ppt)
