@@ -102,3 +102,6 @@
  ### Week10
  > Group project2:  [Kaggle analysis rmd](https://viviantsui0514.github.io/Rcourses2018/Project2/Project2.html)
                    + [Kaggle analysis ppt](https://viviantsui0514.github.io/Rcourses2018/Project2/project2.ppt)
+                   
+ ### Week11
+ > Group project4:  [Apriori](https://viviantsui0514.github.io/Rcourses2018/Project4/project4.html)
