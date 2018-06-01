@@ -102,6 +102,13 @@
  ### Week10
  > Group project2:  [Kaggle analysis rmd](https://viviantsui0514.github.io/Rcourses2018/Project2/Project2.html)
                    + [Kaggle analysis ppt](https://viviantsui0514.github.io/Rcourses2018/Project2/project2.ppt)
-                   
+ * Case study: 
+   1. Instacart Market Basket Analysis
+   2. Learning about Xgboost
+ 
+ 
  ### Week11
  > Group project4:  [Apriori](https://viviantsui0514.github.io/Rcourses2018/Project4/project4.html)
+ 
+ ### Week12
+ > Group project5:  [cnn for image classification on cifar-10 dataset--knitting by *韓曙憶*](https://viviantsui0514.github.io/Rcourses2018/Project5/project5.html)
