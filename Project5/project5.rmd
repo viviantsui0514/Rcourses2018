@@ -1,0 +1,103 @@
+---
+title: "Project5：cnn for image classification on cifar-10"
+author: "group2"
+date: "2018/5/29"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require("knitr")
+opts_knit$set(root.dir = "~/Desktop")
+```
+
+Cifar-10 據書上說是由深度學習大師 Geoffrey Hinton 教授與其在加拿大多倫多大學的學生 Alex Krixhevsky 與 Vinoid Nair 所整理之影像資料集, 包含 6 萬筆 32*32 低解析度之彩色圖片, 其中 5 萬筆為訓練集; 1 萬筆為測試集, 是機器學習中常用的圖片辨識資料集。Cifar-10 的所有圖片被分為 10 個類別 (以 0~9 數字作為 Label 之編碼):
+```{r pressure, echo=FALSE, fig.cap="A caption", out.width = '60%'}
+knitr::include_graphics("cifar10-ten-categories.jpg")
+```
+
+#載入資料集：
+##資料預處理
+```{r echo=T, results='hide'}
+library(keras)
+
+cifar<-dataset_cifar10()
+
+#Training Data
+train_x<-cifar$train$x / 255
+train_y<-to_categorical(cifar$train$y,num_classes = 10)
+
+#Test Data
+test_x<-cifar$test$x/255
+test_y<-to_categorical(cifar$test$y,num_classes = 10)
+```
+
+##顯示資料結構（shape）
+```{r}
+dim(train_x)
+dim(test_x)
+dim(train_y)
+dim(test_y)
+cat("No of training samples\t--",dim(train_x)[[1]] ,
+    "\tNo of test samples\t--",dim(test_x)[[1]])#checking the 
+```
+
+#建立模型：
+```{r}
+model<-keras_model_sequential()
+
+#建立線性堆疊模型, 加入兩層卷積 (丟棄 25% 神經元) + 池化層 :
+model %>%
+  layer_conv_2d(filter=32,kernel_size=c(3,3),padding="same",
+                input_shape=c(32,32,3)) %>%
+  layer_activation("relu") %>%
+  layer_dropout(0.25) %>%
+  layer_max_pooling_2d(pool_size=c(2,2)) %>%
+  layer_conv_2d(filter=64,kernel_size=c(3,3),padding="same") %>%
+  layer_activation("relu") %>%
+  layer_dropout(0.25) %>%
+  layer_max_pooling_2d(pool_size=c(2,2)) %>%
+
+  #建立分類模型 (MLP) : 平坦層 + 隱藏層 (1024 神經元) + 輸出層 (10 神經元)
+  layer_flatten() %>%
+  layer_dropout(0.25) %>%
+  layer_dense(1024) %>%
+  layer_activation("relu") %>%
+  layer_dropout(0.25) %>%
+  layer_dense(10) %>%
+  layer_activation("softmax")
+```
+
+#檢視模型摘要
+```{r}
+summary(model)
+```
+
+#編譯與訓練模型：
+```{r}
+#Compiling the Model
+model %>% compile(
+  loss = "categorical_crossentropy",
+  optimizer = 'adam',
+  metrics = "accuracy"
+)
+
+#Fit the Model
+history <- model %>% fit(
+  train_x, train_y, 
+  epochs = 10, batch_size = 128, 
+  validation_split = 0.2,verbose = 2
+)
+```
+
+訓練十次後模型在training data的準確率達到0.84，在test data的準確率達到0.74。
+
+#繪製訓練結果 :
+```{r}
+plot(history)
+```
+
+#評估預測準確率 :
+```{r}
+model %>% evaluate(test_x, test_y)
+```
