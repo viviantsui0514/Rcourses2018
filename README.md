@@ -111,4 +111,8 @@
  > Group project4:  [Apriori](https://viviantsui0514.github.io/Rcourses2018/Project4/project4.html)
  
  ### Week12
- > Group project5:  [cnn for image classification on cifar-10 dataset--knitting by *韓曙憶*](https://viviantsui0514.github.io/Rcourses2018/Project5/project5.html)
+ > Group project5:  [cnn for image classification on cifar-10 dataset](https://viviantsui0514.github.io/Rcourses2018/Project5/project5.html)
+ * knitting by *韓曙憶*
+
+ ### Week13
+ > [期末進度報告](https://viviantsui0514.github.io/Rcourses2018/Week13/期末進度報告.pptx)
