@@ -116,3 +116,10 @@
 
  ### Week13
  > [期末進度報告](https://viviantsui0514.github.io/Rcourses2018/Week13/期末進度報告.pptx)
+
+ ### Final Project
+ > 登革熱趨勢分析
+ 
+ * [Shiny eda](https://viviantsui0514.github.io/Rcourses2018/Final%20project/dg.Rmd)
+ * [模型預測](https://viviantsui0514.github.io/Rcourses2018/Final%20project/dg.html)
+ 
