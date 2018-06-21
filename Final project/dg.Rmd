@@ -1,0 +1,243 @@
+---
+title: "登革熱數據分析"
+author: "Group2 - 崔芷瑄，鄭富鴻，韓曙憶"
+date: "2018/6/18"
+output: html_document
+---
+
+#研究主題：   
+##分析資料：   
+政府公開數據中的登革熱病例資料，病媒蚊指數資料，以及爬蟲取得的氣象數據資料；
+
+##分析任務：  
+Shiny EDA: 對近五年的全台灣登革熱病情和其他數據進行視覺化呈現；  
+利用臺南數據跑迴歸分析，探討氣象因子對病媒蚊指數的影響；   
+通過機器學習算法（forcastxbg）對臺南數據進行時間序列分析，探討氣象因子和病媒蚊指數對未來的登革熱疫情的預測能力；    
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require("knitr")
+opts_knit$set(root.dir = "~/Desktop")
+```
+
+#一、資料收集  
+1.病媒蚊資料及登革熱資料由疾病管制署資料開放平台直接下載：   
+https://data.cdc.gov.tw/dataset/dengue-mosquito-investigation   
+https://data.cdc.gov.tw/dataset/dengue-daily-determined-cases-1998    
+
+2.台南氣象資料（rvest爬蟲）  
+氣象局網站上有每日氣象數據的月度表，且url除時間部分前面均相同。由於無法直接下載，我們選擇用rvest寫迴圈爬蟲。  
+```{r}
+library(rvest)
+result = NULL
+for (year in 2013:2017){
+  for (month in 1:12){
+if (month < 10) {
+url = paste("http://e-service.cwb.gov.tw/HistoryDataQuery/MonthDataController.do?command=viewMain&station=467410&stname=%25E8%2587%25BA%25E5%258D%2597&datepicker=",year,"-0",month,sep = "")
+} else {
+url = paste("http://e-service.cwb.gov.tw/HistoryDataQuery/MonthDataController.do?command=viewMain&station=467410&stname=%25E8%2587%25BA%25E5%258D%2597&datepicker=",year,"-",month,sep = "")}
+
+web = read_html(url)
+content = html_nodes(web,"td:nth-child(28) , td:nth-child(22) , td:nth-child(14) , td:nth-child(8) , #MyTable td:nth-child(1)")
+text = html_text(content)
+m_table = matrix(text,ncol = 5, byrow = T)
+
+n_day = nrow(m_table)
+yr_col = rep(year,n_day)
+m_col = rep(month,n_day)
+m_table = cbind(yr_col,m_col,m_table)
+
+result = rbind(result,m_table)
+}
+}
+```
+
+Create date column:  
+```{r}
+weather = as.data.frame(result)
+colnames(weather) = c("year","month","day","temp","hd","precp","sunhr")
+weather$Date = paste(weather$year,"-",weather$month,"-",weather$day,sep="")
+weather$Date = as.Date(weather$Date)
+```
+
+
+#二、Feature Engineering  
+下面我們會整理台南每日的氣象資料、病媒蚊指數和登革熱病例數來做具體的統計分析和機器學習。  
+
+##1.氣象資料：  
+已通過爬蟲取得2013-2017年每年的溫度(temp)、濕度(hd)、降雨量(precp)、日照時數信息(sunhr)：  
+```{r,warning=FALSE}
+weather$day = NULL
+weather$month = NULL
+weather$year = NULL
+weather$temp = as.numeric(as.character(weather$temp))
+weather$hd = as.numeric(as.character(weather$hd))
+weather$precp = as.numeric(as.character(weather$precp))
+weather$sunhr = as.numeric(as.character(weather$sunhr))
+weather = weather[,c(5,1,2,3,4)]
+kable(head(weather))
+```
+
+```{r}
+library(ggplot2)
+ ggplot(weather, aes(Date)) + 
+     geom_line(aes(y = temp, colour = "temp"))+
+     geom_line(aes(y = hd, colour = "hd"))+     
+     geom_line(aes(y = precp, colour = "precp"))+
+     geom_line(aes(y = sunhr, colour = "sunhr"))+
+     ylab("weather")
+     
+```
+
+##2.每日病媒蚊指數   
+讀入台南病媒蚊指數資料：  
+```{r}
+mos = read.csv("MosIndex_Tainan.csv")
+mos$Date = as.Date(mos$Date)
+kable(head(mos))
+```
+
+由於病媒蚊的調察是以里為統計範圍，且並非每天都會調查每個里的情況，故如果在單個里的範圍內分析病媒蚊指數與病例數的關係會出現太多na。所以這裡我們根據公式重新計算台南每日整體的病媒蚊指數與病例數來做分析：    
+台南整體布氏指數（BI）= 總陽性容器數/總調查戶數*100%    
+台南整體住宅指數（HI）= 總陽性戶數/總調查戶數*100%    
+```{r}
+library(plyr)
+mos_daily = ddply(mos,~Date,summarise,HH=sum(HouseHold),Pos_HH=sum(PosHH),Pos_Con=sum(PosConAll))
+mos_daily$BI = mos_daily$Pos_Con/mos_daily$HH*100
+mos_daily$HI = mos_daily$Pos_HH/mos_daily$HH*100
+kable(head(mos_daily))
+```
+
+```{r}
+ ggplot(mos_daily, aes(Date)) + 
+     geom_line(aes(y = BI, colour = "BI"))+
+     geom_line(aes(y = HI, colour = "HI"))
+```
+
+##3.每日登革熱病例數   
+讀入台南每日登革熱病例資料：   
+```{r}
+dengue = read.csv("dengue_tainan.csv")
+dengue$Date = as.Date(dengue$Date_Onset)
+dengue$Date_Onset = NULL
+dengue = dengue[,c(5,1,2,3,4)]
+kable(head(dengue))
+```
+
+計算台南每日本土及境外病例數：  
+```{r}
+dg_daily = ddply(dengue,~Date,summarise,local=sum(Imported=="N"),import=sum(Imported=="Y"))
+kable(head(dg_daily))
+summary(dg_daily)
+```
+
+```{r}
+ ggplot(dg_daily, aes(Date)) + 
+     geom_line(aes(y = local, colour = "local"))
+```
+
+```{r}
+ ggplot(dg_daily, aes(Date)) +
+     geom_point(aes(y = import, colour = "import"))
+```
+
+##4、合併每日病例數、病媒蚊指數和氣象數據：  
+```{r}
+dg = merge(dg_daily,weather,by="Date",all=TRUE)
+dg = merge(dg,mos_daily,by="Date",all=TRUE)
+dg$local[is.na(dg$local)] = 0
+dg$import[is.na(dg$import)] = 0
+dg$Pos_Con=NULL
+dg$HH = NULL
+dg$Pos_HH = NULL
+kable(head(dg))
+```
+
+#三、EDA & shiny可視化    
+暫時無法把shiny嵌入rmd，所以直接現場demo用來製作shiny的r code和成果。
+
+#四、ANOVA & Regression Analysis  
+通過ANOVA和迴歸分析觀察那些氣象因子會與病媒蚊布氏指數有相關性：    
+ 
+y:BI x:temp, hd, precp, sunhr
+```{r}
+anova(m1 <- lm(BI ~ temp + hd + precp +sunhr, data = dg))
+```
+
+可以看到溫度和濕度與布氏指數有顯著相關. 
+```{r}
+summary(m1)
+```
+
+```{r,warning=FALSE}
+library(GGally)
+ggpairs(dg[,c(4:8)],aes(alpha = 0.4))
+```
+  
+每日的病媒蚊指數與氣象因子關聯性沒有很大的原因可能是蚊蟲生長期與有利氣象因素之間會有時間差，所以無法從當日數據中直接看出強關聯。  
+   
+#五、forcastxgb  
+forcastxgb結合了機器學習中的xgboost算法與統計中的arima time-series分析，  
+1. 我們先分析氣象因子在時間序列中對病媒蚊布氏指數的預測效果：  
+y: BI  x: temp, hd, precp, sunhr, BI, HI   
+
+載入套件：
+```{r}
+library(forecastxgb)
+library(fpp)
+```
+
+
+將BI轉為ts格式：
+```{r}
+BI = as.ts(dg$BI) 
+BI[is.na(BI)] = 0
+```
+
+將預測變數轉為套件要求的matrix格式：   
+```{r}
+x1 = as.matrix(dg[,4:7])
+```
+
+
+套用模型：   
+```{r}
+model1 = xgbar(y=BI,xreg=x1,na.rm = TRUE)
+summary(model1)
+```
+
+可以看到在迴歸分析中降雨量與日照時數與BI並沒有顯著的關聯，但按時間序列分析的話對BI最有預測效果的氣象因子反倒是幾日內的降雨與日照。
+
+
+2.
+再用這個套件來考察氣象因子、病媒蚊指數、境外病例數對境內病例數的預測效果：    
+y: local event, x: imported event, temp, hd, precp, sunhr, BI, HI   
+
+
+將y：local轉為套件要求的ts格式:   
+```{r}
+local_event = as.ts(dg$local) 
+```
+
+將預測變數轉為套件要求的matrix格式：   
+```{r}
+x2 = as.matrix(dg[,3:9])
+```
+
+套用模型：   
+```{r}
+model2 = xgbar(y=local_event,xreg=x2)
+summary(model2)
+```
+
+可以看到對每日本土病例數最有力的預測因子包括：前兩日內的本土病例數，六日前的布氏指數，與兩日前的境外病例數。
+
+這與我們一般認識到的登革熱潛伏期、蚊蟲成長所需時間，與境外病例引發感染事件的認識相符。
+
+建議的防治措施：  
+1. 檢測社區內的病媒蚊指數，當指數偏高時，即使進行清除工作並加強社區宣導；  
+2. 即時隔離境外移入病例，調查與其接觸過的人群，並加強遊客宣導。  
+
+
+
+
