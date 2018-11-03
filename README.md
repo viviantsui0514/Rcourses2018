@@ -120,6 +120,6 @@
  ### Final Project
  > 登革熱趨勢分析
  
- * [Shiny eda](https://viviantsui0514.github.io/Rcourses2018/Final%20project/dg.Rmd)
+ * [Shiny eda](https://github.com/viviantsui0514/Rcourses2018/blob/master/Final%20project/dengue.R)
  * [模型預測](https://viviantsui0514.github.io/Rcourses2018/Final%20project/dg.html)
  
