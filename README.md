@@ -118,8 +118,8 @@
  > [期末進度報告](https://viviantsui0514.github.io/Rcourses2018/Week13/期末進度報告.pptx)
 
  ### Final Project
- > 登革熱趨勢分析
+ > 登革熱趨勢分析(Dengue Trend Analysis)
  
  * [Shiny eda](https://github.com/viviantsui0514/Rcourses2018/blob/master/Final%20project/dengue.R)
- * [模型預測](https://viviantsui0514.github.io/Rcourses2018/Final%20project/dg.html)
+ * [模型預測 Model Prediction](https://viviantsui0514.github.io/Rcourses2018/Final%20project/dg.html)
  
